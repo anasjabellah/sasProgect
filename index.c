@@ -4,6 +4,10 @@
 
 void titel_bank();
 void meun();
+void retirer();
+void Depot();
+void tempnams();
+void descendants();
 
 typedef struct{
     
@@ -18,7 +22,6 @@ client clit[150] ;
 
 int indexTabel = 0 ;
 int nomber_client ;
-
 
 /* ======================================= start fontion main ==================================  */  
 
@@ -50,7 +53,6 @@ int main() {
     switch (menu)
     {
     case 1:
-
         system("cls");
         printf(" ********************************* 1.Creer un user *********************************\n");
 
@@ -72,7 +74,7 @@ int main() {
         break;
 
     case 2:
-        
+
         system("cls");
         printf(" ********************************* 2.Introduire plusieur comptes bancaires *********************************\n\n\n");
 
@@ -104,6 +106,7 @@ int main() {
             nombers += 1 ;
 
         }
+
         goto returns ;
         break;
 
@@ -124,11 +127,11 @@ int main() {
 
         switch (menuOperations){
         case  1:
-            
+            retirer();
             goto returns;
             break;
         case  2:
-            
+            Depot();
             goto returns;
             break;
         case  3:
@@ -157,9 +160,28 @@ int main() {
         switch (Affichage)
         {
         case 1:{
+            tempnams();
+                for( i=0 ; i < indexTabel ; i++){
+
+                    printf("Client %d:\n",i+1);
+                    printf("CIN : %s\n",clit[i].cin);
+                    printf("Nom : %s\n",clit[i].nom);
+                    printf("Prenom : %s\n",clit[i].prenom);
+                    printf("Montant : %d\n",clit[i].montant);
+                    printf("\n");
+                }
             break;
             }
         case 2:
+            descendants();
+                for( i=0 ; i < indexTabel ; i++){
+                    printf("Client %d:\n",i+1);
+                    printf("CIN : %s\n",clit[i].cin);
+                    printf("Nom : %s\n",clit[i].nom);
+                    printf("Prenom : %s\n",clit[i].prenom);
+                    printf("Montant : %d\n",clit[i].montant);
+                    printf("\n");
+                }
             break;
         
         case 3:
@@ -188,6 +210,7 @@ int main() {
 }
 /* ======================================= start fontion main  ==================================  */  
 
+/* ======================================= start fontion void ==================================  */  
 
 void titel_bank(){
     printf("===================================================================\n");
@@ -203,5 +226,106 @@ void meun(){
     printf("4 .Affichage  \n");
     printf("5 .Fidelisation  \n");
     printf("6 .Quitter  \n");
+}
+
+void retirer(){
+    
+    int  i ;
+    int conter = indexTabel ;
+    char cinUser[8] ;
+    float nomberRetrait ;
+
+    printf("entre votre Cin :\t");
+    scanf("%s",&cinUser);
+
+    for( i = 0 ; i <conter ; i++ )
+    {
+        if(strstr(cinUser ,clit[i].cin))
+        {
+            printf("combien : ");
+            scanf("%f",&nomberRetrait);
+
+            if(nomberRetrait > clit[i].montant){
+
+                printf("\n impossible votre sold inferieur \n");
+                break;
+
+            }
+
+            clit[i].montant -= nomberRetrait;
+            printf("Montane : %d \n ",clit[i].montant);
+            break;
+        }
+
+    }
+}
+
+
+void Depot(){
+
+    int  i ;
+    int  conter = indexTabel ;
+    char cinUser[8] ;
+    float nomberRetrait ;
+
+    printf("entre votre Cin :\t");
+    scanf("%s",&cinUser);
+
+    for( i = 0 ; i < conter ; i++ )
+    {
+        if(strstr(cinUser ,clit[i].cin))
+        {
+            printf("combien : ");
+            scanf("%f",&nomberRetrait);
+
+            if(nomberRetrait > clit[i].montant){
+
+                printf("\n impossible votre sold inferieur \n");
+                break;
+
+            }
+
+            clit[i].montant += nomberRetrait;
+            printf("Montane : %d \n ",clit[i].montant);
+            break;
+        }
+
+    }
+}
+
+void tempnams(){
+
+        client temporaire;
+        int i , j ;
+
+    for (i=0 ; i < indexTabel; i++)
+        for (j=0 ; j < indexTabel ; j++)
+        
+        
+            if (clit[i].montant < clit[j].montant ) {
+
+                temporaire = clit[i];
+                clit[i] = clit[j];
+                clit[j] = temporaire ;
+            }
+    
 
 }
+
+void descendants(){
+
+        client temporaire;
+        int i , j ;
+
+    for (i=0 ; i < indexTabel; i++)
+        for (j=0 ; j < indexTabel ; j++)
+        
+        
+            if (clit[i].montant < clit[j].montant ) {
+
+                temporaire = clit[i];
+                clit[i] = clit[j];
+                clit[j] = temporaire ;
+            }
+}
+/* ======================================= end fontion void ==================================  */  
