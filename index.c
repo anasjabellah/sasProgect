@@ -50,10 +50,60 @@ int main() {
     switch (menu)
     {
     case 1:
+
+        system("cls");
+        printf(" ********************************* 1.Creer un user *********************************\n");
+
+        printf("\necrivez votre cin :");
+        scanf("%s",clit[indexTabel].cin);
+
+        printf("\necrivez votre nom :");
+        scanf("%s",clit[indexTabel].nom);
+
+        printf("\necrivez votre prenom :");
+        scanf("%s",clit[indexTabel].prenom);
+
+        printf("\necrivez votre montant :");
+        scanf("%d",&clit[indexTabel].montant);
+
+        indexTabel++;
+
         goto returns ;
         break;
 
     case 2:
+        
+        system("cls");
+        printf(" ********************************* 2.Introduire plusieur comptes bancaires *********************************\n\n\n");
+
+        int nomber_client , nombers = 1  ;
+        int i , lastIndex = indexTabel ;
+
+        printf("entrez le nombre de client : \n\n\n");
+        scanf("%d", &nomber_client);
+
+
+        for (int i = lastIndex ; i < nomber_client + lastIndex  ; i++)
+        {
+
+            printf("Veuillez remplir les champs: %d \n\n\n", nombers );
+
+            printf("\necrivez votre cin :");
+            scanf("%s",clit[indexTabel].cin);
+
+            printf("\necrivez votre nom :");
+            scanf("%s",clit[indexTabel].nom);
+
+            printf("\necrivez votre prenom :");
+            scanf("%s",clit[indexTabel].prenom);
+
+            printf("\necrivez votre montant :");
+            scanf("%d",&clit[indexTabel].montant);
+
+            indexTabel = indexTabel + 1 ;
+            nombers += 1 ;
+
+        }
         goto returns ;
         break;
 
