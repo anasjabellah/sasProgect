@@ -237,11 +237,25 @@ int main() {
 
     case 5:
 
+        descendants();
+        for( i=0 ; i < 3 ; i++){ 
+
+            printf("Client %d:\n",i+1);
+            printf("CIN : %s\n",clit[i].cin);
+            printf("Nom : %s\n",clit[i].nom);
+            printf("Prenom : %s\n",clit[i].prenom);
+            printf("Montant : %d\n", clit[i].montant=clit[i].montant *1.013  );
+            printf("\n");
+            
+        }
+
+        
+
         break;
+
     case 6:
         exit(0);
         break;
-
     default:
 
         printf("error !! ");
