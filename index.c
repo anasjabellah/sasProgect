@@ -8,6 +8,8 @@ void retirer();
 void Depot();
 void tempnams();
 void descendants();
+void AscendentChiffres();
+void DescendantChiffres();
 
 typedef struct{
     
@@ -197,38 +199,25 @@ int main() {
         
         case 3:
             system("cls");
-            int nomber_montant ;
-
-            printf("nomber_montant");
-            scanf("%d");
-
-
-            descendants();
-
-                for( i=0 ; i < indexTabel ; i++){
-
-                    if (nomber_montant < clit[i].montant ) 
-                    {
-                        
-                        printf("Client %d:\n",i+1);
-                        printf("CIN : %s\n",clit[i].cin);
-                        printf("Nom : %s\n",clit[i].nom);
-                        printf("Prenom : %s\n",clit[i].prenom);
-                        printf("Montant : %d\n",clit[i].montant);
-                        printf("\n");
-
-                    }
-                    
-                }
+            AscendentChiffres();
+            goto returns ;
             break;
         
         case 4:
+            system("cls");
+            DescendantChiffres();
+            goto returns ;
             break;
         
         case 5:
+            system("cls");
+            goto returns ;
             break;
         
         default:
+            printf("votre choix doit etre compris entre ( 1 et 5 )  : ");
+            system("cls");
+            goto returns ;
             break;
         }
  
@@ -244,7 +233,7 @@ int main() {
             printf("CIN : %s\n",clit[i].cin);
             printf("Nom : %s\n",clit[i].nom);
             printf("Prenom : %s\n",clit[i].prenom);
-            printf("Montant : %d\n", clit[i].montant=clit[i].montant *1.013  );
+            printf("Montant : %d\n", clit[i].montant=clit[i].montant * 1.013  );
             printf("\n");
             
         }
@@ -330,7 +319,7 @@ void Depot(){
 
     for( i = 0 ; i < conter ; i++ )
     {
-        if(strstr(cinUser ,clit[i].cin))
+        if(strcmp(clit[i].cin , cinUser) == 0 )
         {
             printf("combien : ");
             scanf("%f",&nomberRetrait);
@@ -385,4 +374,77 @@ void descendants(){
                 clit[j] = temporaire ;
             }
 }
+
+
+
 /* ======================================= end fontion void ==================================  */
+
+/* ----------- Trier A Ascendent De Chiffres ----------- */
+
+void AscendentChiffres(){
+    client temporaire[30];
+    int i,j=0, cased = 0;
+    int chiffres;
+    printf("Entrez Un Montant Pour Vous Montrer Les Plus Gros clientes Bancaires : ");
+    scanf("%d", &chiffres);
+
+    for(i = 0; i < indexTabel ; i++){
+      if(clit[i].montant >= chiffres){
+          temporaire[cased] = clit[i];
+          cased++;
+      }
+    }
+    client temp;
+    for(i = 0; i < cased; i++)
+      for(j = 0; j < cased-1; j++)
+
+        if(temporaire[i].montant < temporaire[j].montant){
+          temp = temporaire[i];
+          temporaire[i] = temporaire[j];
+          temporaire[j]= temp;
+        }
+    
+      for(i = 0; i < cased; i++){
+
+        printf("CIN : %s \n", temporaire[i].cin);
+        printf("Nom : %s \n", temporaire[i].nom);
+        printf("Prenom : %s \n", temporaire[i].prenom);
+        printf("Montant : %.d DH \n\n", temporaire[i].montant);
+
+      }
+}
+
+/* ----------- Trier A Descendant De Chiffres ----------- */
+
+void DescendantChiffres(){
+    client temporaire[30];
+    int i,j=0, cased = 0;
+    int chiffres;
+
+    printf("Entrez Un Montant Pour Vous Montrer Les Plus Gros clientes Bancaires : ");
+    scanf("%d", &chiffres);
+
+    for(i = 0; i < indexTabel ; i++){
+      if(clit[i].montant >= chiffres){
+          temporaire[cased] = clit[i];
+          cased++;
+      }
+    }
+    client temp;
+    for(i = 0; i < cased; i++)
+      for(j = 0; j < cased-1; j++)
+        if(temporaire[i].montant > temporaire[j].montant){
+          temp = temporaire[i];
+          temporaire[i] = temporaire[j];
+          temporaire[j]= temp;
+          }
+    
+      for(i = 0; i < cased; i++){
+
+        printf(" CIN : %s \n", temporaire[i].cin);
+        printf(" Nom : %s \n", temporaire[i].nom);
+        printf(" Prenom : %s \n", temporaire[i].prenom);
+        printf(" Montant : %d DH \n\n", temporaire[i].montant);
+
+      }
+}
