@@ -233,7 +233,7 @@ int main() {
             printf("CIN : %s\n",clit[i].cin);
             printf("Nom : %s\n",clit[i].nom);
             printf("Prenom : %s\n",clit[i].prenom);
-            printf("Montant : %d\n", clit[i].montant=clit[i].montant * 1.013  );
+            printf("Montant : %d\n", clit[i].montant=clit[i].montant * 0.013  );
             printf("\n");
             
         }
@@ -379,24 +379,23 @@ void descendants(){
 
 /* ======================================= end fontion void ==================================  */
 
-/* ----------- Trier A Ascendent De Chiffres ----------- */
 
 void AscendentChiffres(){
     client temporaire[30];
-    int i,j=0, cased = 0;
+    int i,j=0, tabalcased = 0;
     int chiffres;
     printf("Entrez Un Montant Pour Vous Montrer Les Plus Gros clientes Bancaires : ");
     scanf("%d", &chiffres);
 
     for(i = 0; i < indexTabel ; i++){
       if(clit[i].montant >= chiffres){
-          temporaire[cased] = clit[i];
-          cased++;
+          temporaire[tabalcased] = clit[i];
+          tabalcased++;
       }
     }
     client temp;
-    for(i = 0; i < cased; i++)
-      for(j = 0; j < cased-1; j++)
+    for(i = 0; i < tabalcased; i++)
+      for(j = 0; j < tabalcased-1; j++)
 
         if(temporaire[i].montant < temporaire[j].montant){
           temp = temporaire[i];
@@ -404,21 +403,19 @@ void AscendentChiffres(){
           temporaire[j]= temp;
         }
     
-      for(i = 0; i < cased; i++){
+      for(i = 0; i < tabalcased; i++){
 
-        printf("CIN : %s \n", temporaire[i].cin);
-        printf("Nom : %s \n", temporaire[i].nom);
-        printf("Prenom : %s \n", temporaire[i].prenom);
-        printf("Montant : %.d DH \n\n", temporaire[i].montant);
+            printf("CIN : %s \n", temporaire[i].cin);
+            printf("Nom : %s \n", temporaire[i].nom);
+            printf("Prenom : %s \n", temporaire[i].prenom);
+            printf("Montant : %.d DH \n\n", temporaire[i].montant);
 
       }
 }
 
-/* ----------- Trier A Descendant De Chiffres ----------- */
-
 void DescendantChiffres(){
     client temporaire[30];
-    int i,j=0, cased = 0;
+    int i,j=0, tabalcased = 0;
     int chiffres;
 
     printf("Entrez Un Montant Pour Vous Montrer Les Plus Gros clientes Bancaires : ");
@@ -426,20 +423,20 @@ void DescendantChiffres(){
 
     for(i = 0; i < indexTabel ; i++){
       if(clit[i].montant >= chiffres){
-          temporaire[cased] = clit[i];
-          cased++;
+          temporaire[tabalcased] = clit[i];
+          tabalcased++;
       }
     }
     client temp;
-    for(i = 0; i < cased; i++)
-      for(j = 0; j < cased-1; j++)
+    for(i = 0; i < tabalcased; i++)
+      for(j = 0; j < tabalcased-1; j++)
         if(temporaire[i].montant > temporaire[j].montant){
           temp = temporaire[i];
           temporaire[i] = temporaire[j];
           temporaire[j]= temp;
           }
     
-      for(i = 0; i < cased; i++){
+      for(i = 0; i < tabalcased; i++){
 
         printf(" CIN : %s \n", temporaire[i].cin);
         printf(" Nom : %s \n", temporaire[i].nom);
